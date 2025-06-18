@@ -1,0 +1,16 @@
+
+.ng-touched.ng-invalid,
+.ng-dirty.ng-invalid{
+    border-color: red;
+}
+
+.ng-submitted .ng-invalid{
+    border-color: red;
+}
+
+.custom-bg {
+    border-radius: 30px;
+    border: 1px solid pink;
+    padding: 50px;
+    background-color: palegoldenrod;
+}

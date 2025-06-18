@@ -1,0 +1,108 @@
+
+<div class="container mt-5">
+    <div *ngIf="showLogin" class="row">
+    <div class="col-6 offset-3 custom-bg">
+                <h1>LogIn</h1>
+                <form formModule="">
+                    <div class="form-group">
+                        <label for="userName">UserName</label>
+                        <input type="text" name="userName" [(ngModel)]="loginObj.userName"
+                         class="form-control" placeholder="Enter userName">
+                    </div>
+                     <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" name="password" [(ngModel)]="loginObj.password"
+                         class="form-control" placeholder="Enter password">
+                    </div>
+                    <div class="form-group mt-3">
+                        <button class="btn btn-primary" (click)="onlogin()">LogIn</button><br/>
+                        <a (click)="openSignUp()">Already have account? click to signUp</a>
+                    </div>
+                </form>
+    </div>
+</div>
+  <div *ngIf="!showLogin" class="row">
+        <div class="col-8 offset-2 custom-bg">
+            <h1>SignUp</h1>
+            <form #signup="ngForm">
+                <div ngModelGroup="userInfo" #userInfo="ngModelGroup">
+                    <div class="form-group">
+                        <label for="userName">UserName</label>
+                        <input type="text" pattern="[a-zA-Z]+" #userName="ngModel" name="userName" ngModel
+                            class="form-control" placeholder="Enter userName" required [(ngModel)]="signUpObj.userName">
+                        <strong *ngIf="userName.touched && userName.hasError('required')" class="text-danger">
+                            This field is required
+                        </strong>
+                        <strong *ngIf="userName.touched && userName.hasError('pattern')" class="text-danger">
+                            username should't includes spe and num
+                        </strong>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" name="password" [(ngModel)]="signUpObj.password"
+                         class="form-control" placeholder="Enter password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input #email="ngModel" type="text" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                            name="email" ngModel class="form-control" placeholder="Enter email" required [(ngModel)]="signUpObj.email">
+                        <strong *ngIf="email.touched && email.hasError('pattern') " class="text-danger">
+                            invalid Email pattern ({{'abc@gmail.com'}})
+                        </strong>
+                        <strong *ngIf="email.touched && email.hasError('required') " class="text-danger">
+                            Email is required field
+                        </strong>
+                    </div>
+                    <p class="alert alert-danger" *ngIf="userInfo.touched && userInfo.invalid">
+                        Invalid UserInfo !!!
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="secretQus">Secrete Questions*</label>
+                    <select name="secretQus" ngModel id="secretQus" class="form-control" required [(ngModel)]="signUpObj.secretQus">
+                        <option value="favorateBook">Favorate Book</option>
+                        <option value="favorateSport">Favorate Sport</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="answer">Answer*</label>
+                    <input type="text" name="answer" ngModel class="form-control" required [(ngModel)]="signUpObj.answer">
+                </div>
+                <div class="form-group">
+                    <label for="isSubcribe">
+                        <input type="checkbox" name="isSubcribe" id="isSubcribe" ngModel> Subcribe For Daily Email
+                    </label>
+                </div>
+                <div class="form-group" *ngFor="let moc of mocArr">
+                    <label [for]="moc.contactMode">
+                        <input type="radio" [value]="moc.contactMode" name="modeOfContact" ngModel
+                            [id]="moc.contactMode" [(ngModel)]="signUpObj.contactMode">
+                        Contact By {{moc.contactMode}}
+                    </label>
+                </div>
+                <!-- <div class="form-group">
+                        <label for="mocPhone">
+                            <input type="radio" value="phone" name="modeOfContact" ngModel id="mocPhone">Contact By Phone
+                        </label>
+                    </div> -->
+                <div class="form-group ">
+                    <button type="submit" class="btn btn-block btn-primary" (click)="onSignUp()">SignUp</button> <br/>
+                    <a (click)="openLogin()">Already have account? click to login</a>
+                </div>
+            </form>
+        </div>
+        <!-- <div class="col-md-4 mt-4">
+            <button (click)="onDataPatch()" class="btn btn-info">
+                Patch value in form
+            </button> <br />
+            isValid:{{signup.valid}} <br />
+            isInValid:{{signup.invalid}} <br />
+            value:{{signup.value | json}} <br />
+        </div> -->
+    </div>
+</div>
+
+
+
+
+

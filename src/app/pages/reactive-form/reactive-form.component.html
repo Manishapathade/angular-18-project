@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-8 offset-2 custom-bg">
+           <form [formGroup]="studantForm" >
+            <div class="col-md-6">
+                <label for="form-label">First Name*</label>
+                <input type="text" formControlName="firstName" class="form-control">
+                <div class="text-danger">
+                   @if (studantForm.controls['firstName'].touched &&studantForm.controls['firstName'].errors?.['required']){
+                    <span>This field is required</span>
+                   }@else if (studantForm.controls['firstName'].touched && studantForm.controls['firstName'].errors?.['minLength']) {
+                    <span>min char 3 required</span>
+                   }
+                </div>
+            </div>
+             <div class="col-md-6">
+                <label for="form-label">Last Name</label>
+                <input type="text" formControlName="lastName" class="form-control">
+            </div>
+             <div class="col-md-6">
+                <label for="form-label">UserName</label>
+                <div class="input-group">
+                <span class="input-group-text"><span>&#64;</span></span>
+                <input type="text" formControlName="userName" class="form-control">
+                </div>
+            </div>
+             <div class="col-md-6">
+                <label for="form-label">City</label>
+                <input type="text" formControlName="city" class="form-control">
+            </div>
+             <div class="col-md-6">
+                <label for="form-label">State</label>
+                <select class="form-select" formControlName="state">
+                    <option selected disabled value="">Choose...</option>
+                    <option>Maharashra</option>
+                    <option>Panjab</option>
+                    <option>Goa</option>
+                    <option>America</option>
+
+                </select>
+            </div>
+             <div class="col-md-6">
+                <label for="form-label">ZipCode</label>
+                <input type="text" formControlName="zipCode" class="form-control">
+            </div>
+             <div class="col-md-6">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input"  formControlName="isAcceptTerms">
+                    <label class="form-check-label" for="inValidcheck">Agree to terms And Conditions</label>
+                </div>
+                
+            </div>
+             <div class="col-md-12">
+               <button class="btn btn-success">Reset Btn</button>
+               <button class="btn btn-primary mx-2" (click)="onSubmit()">Submit</button>
+            </div>
+           </form>
+        </div>
+        <div class="col-4">
+            {{formVal | json}}
+        </div>
+    </div>
+</div>
