@@ -8,8 +8,8 @@
                 <div class="text-danger">
                    @if (studantForm.controls['firstName'].touched &&studantForm.controls['firstName'].errors?.['required']){
                     <span>This field is required</span>
-                   }@else if (studantForm.controls['firstName'].touched && studantForm.controls['firstName'].errors?.['minLength']) {
-                    <span>min char 3 required</span>
+                   }@else if (studantForm.controls['firstName'].touched && studantForm.controls['firstName'].errors?.['minlength']) {
+                     <span>min 4 Char is required</span>
                    }
                 </div>
             </div>
@@ -23,6 +23,9 @@
                 <span class="input-group-text"><span>&#64;</span></span>
                 <input type="text" formControlName="userName" class="form-control">
                 </div>
+                  @if (studantForm.controls['userName'].touched &&studantForm.controls['userName'].errors?.['required']){
+                      <span class="text-danger">This field is required</span>
+                    }
             </div>
              <div class="col-md-6">
                 <label for="form-label">City</label>

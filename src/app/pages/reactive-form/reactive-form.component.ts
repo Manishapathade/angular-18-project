@@ -14,7 +14,7 @@ export class ReactiveFormComponent {
   studantForm : FormGroup = new FormGroup({
     firstName : new FormControl("", [Validators.required,Validators.minLength(4)]),
     lastName : new FormControl(null, [Validators.required]),
-    userName : new FormControl(),
+    userName : new FormControl(null, [Validators.required]),
     city : new FormControl(),
     state : new FormControl(),
     zipCode : new FormControl(),
